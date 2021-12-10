@@ -1,4 +1,4 @@
-const notes = [
+const NotesDB = [
   {
     id: 1,
     content: 'HTML is easy',
@@ -25,4 +25,4 @@ const notes = [
   }
 ]
 
-export default notes
+export default NotesDB
