@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons"
-import PersonsDB from "./PhonebookDB";
 
 const App = () => {
   //App state
-  const [persons, setPersons] = useState(PersonsDB)
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [searchName, setSearchName] = useState('')
 
+  //Fetch persons data from server 
+  //using useEffect, axios and promise
+  useEffect(() => {
+    console.log('useEffect operation')
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        console.log('Data fetched successful')
+        setPersons(response.data)
+      })
+  }, [])
   //Handle number changes
   const handleNumberChange = (event) => {
     setNewNumber(event.target.value)
@@ -21,7 +32,6 @@ const App = () => {
   }
   //Handle search name changes
   const handleSearchChange = (event) => {
-    console.log(event.target.value)
     setSearchName(event.target.value)
   }
   //Handle form submit
