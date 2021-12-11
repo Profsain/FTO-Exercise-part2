@@ -1,14 +1,28 @@
-import React, {useState} from "react";
-import NotesDB from "./NotesDB";
+import React, {useEffect, useState} from "react";
+// import NotesDB from "./NotesDB";
 import Note from "./components/Note";
+import axios from "axios";
 
 
 const App = () => {
   //state
-  const [notes, setNotes] = useState(NotesDB)
+  const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
 
+   //Communicating with server using
+  //Axios and promise
+  useEffect(() => {
+    console.log('useEffect operation')
+    axios
+      .get('http://localhost:3001/notes')
+      .then(response => {
+        console.log('Promise Fulfilled')
+        // console.log(response.status)
+        setNotes(response.data)
+      })
+  }, [])
+  
   //New note changes handler
   const handleNoteChanges = (event) => {
     setNewNote(event.target.value)
@@ -28,11 +42,6 @@ const App = () => {
     setNewNote('')
   }
 
-  //show important notes handler
-  // const importantNote = () => {
-  //   setShowAll(!showAll)
-  // }
-  //Notes conditional rendering
   const notesToShow = showAll
     ? notes
     : notes.filter(note => note.important === true)
