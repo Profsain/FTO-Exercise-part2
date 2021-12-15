@@ -17,6 +17,48 @@
       "content": "GET and POST are the most important methods of HTTP protocol",
       "date": "2019-05-30T19:20:14.298Z",
       "important": true
+    },
+    {
+      "content": "Fetching data from server",
+      "date": "2021-12-14T11:28:38.052Z",
+      "important": true,
+      "id": 4
+    },
+    {
+      "content": "Fetching data from server",
+      "date": "2021-12-14T11:28:42.391Z",
+      "important": false,
+      "id": 5
+    },
+    {
+      "content": "Fetching data from server",
+      "date": "2021-12-14T11:28:43.310Z",
+      "important": false,
+      "id": 6
+    },
+    {
+      "content": "Fetching data from server",
+      "date": "2021-12-14T11:28:44.016Z",
+      "important": false,
+      "id": 7
+    },
+    {
+      "content": "Fetching data from server",
+      "date": "2021-12-14T11:28:44.689Z",
+      "important": true,
+      "id": 8
+    },
+    {
+      "content": "Sending data object to the server",
+      "date": "2021-12-14T15:02:17.533Z",
+      "important": false,
+      "id": 9
+    },
+    {
+      "content": "HTTP POST is use for data sending operation",
+      "date": "2021-12-14T15:02:49.230Z",
+      "important": false,
+      "id": 10
     }
   ]
 }
