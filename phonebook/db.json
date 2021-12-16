@@ -1,24 +1,34 @@
 {
-  "persons":[
-    { 
-      "name": "Arto Hellas", 
-      "number": "040-123456",
-      "id": 1
-    },
-    { 
-      "name": "Ada Lovelace", 
-      "number": "39-44-5323523",
-      "id": 2
-    },
-    { 
-      "name": "Dan Abramov", 
-      "number": "12-43-234345",
+  "persons": [
+    {
+      "name": "Husseini",
+      "number": "09998888777",
       "id": 3
     },
-    { 
-      "name": "Mary Poppendieck", 
-      "number": "39-23-6423122",
-      "id": 4
+    {
+      "name": "kuku",
+      "number": "08081813381",
+      "id": 5
+    },
+    {
+      "name": "Hassan Mudi",
+      "number": "09088848483",
+      "id": 6
+    },
+    {
+      "name": "Profsain Husseini",
+      "number": "08077654532",
+      "id": 7
+    },
+    {
+      "name": "Husseini Mudi",
+      "number": "07023456987",
+      "id": 8
+    },
+    {
+      "name": "Hauwa Habibi",
+      "number": "09014627160",
+      "id": 9
     }
   ]
 }
