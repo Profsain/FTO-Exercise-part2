@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 // import NotesDB from "./NotesDB";
+import './index.css';
 import Note from "./components/Note";
 import noteService from './services/notes'
+import Notification from "./components/Notification";
 
 
 const App = () => {
@@ -9,6 +11,7 @@ const App = () => {
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
+  const [errorMessage, setErrorMessage] = useState(null)
 
    //Communicating with server using
   //noteService module
@@ -57,9 +60,12 @@ const App = () => {
         setNotes(notes.map(note => note.id !== id ? note : returnedNote))
       })
       .catch(error => {
-        alert(
-        `The note ${note.content} was already deleted`
+        setErrorMessage(
+          `The note ${note.content} was already removed from server`
         )
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
         setNotes(notes.filter(n => n.id !== id))
     })
   }
@@ -67,6 +73,12 @@ const App = () => {
   return (
     <div>
       <h1>Notes Taking App</h1>
+
+      <Notification message={errorMessage} />
+
+      <button onClick={() => setShowAll(!showAll)}>
+        Show {showAll ? 'Important' : 'All'}
+      </button>
       <ul>
         {notesToShow.map((note, i) =>
           <Note
@@ -84,9 +96,7 @@ const App = () => {
         />
         <button type="submit">Save</button>
       </form>
-      <button onClick={() => setShowAll(!showAll)}>
-        Show {showAll ? 'Important' : 'All'}
-      </button>
+      
     </div>
   )
 }

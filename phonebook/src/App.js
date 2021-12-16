@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import phoneService from './services/phoneService'
 import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
-import Persons from "./components/Persons"
+import Persons from "./components/Persons";
+import Notification from "./components/Notification"
+import Warning from "./components/Warning";
+import './index.css';
 
 const App = () => {
   //App state
@@ -10,6 +13,8 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [searchName, setSearchName] = useState('')
+  const [successMessage, setSuccessMessage] = useState(null)
+  const [warningMessage, setWarningMessage] = useState(null)
 
   //Fetch persons data from server 
   //using useEffect, axios and promise
@@ -56,6 +61,19 @@ const App = () => {
           .then(returnedData => {
             setPersons(persons.map(person => person.id !== id ? person : returnedData))
           })
+          .catch(error => {
+            setWarningMessage(`Information of ${person.name} has been removed from the server`)
+            setTimeout(() => {
+              setWarningMessage(null)
+            }, 5000)
+          })
+        
+        setNewName('')
+        setNewNumber('')
+        setSuccessMessage(`Updated ${person.name}.`)
+        setTimeout(() => {
+          setSuccessMessage(null)
+        }, 5000)
       }
     } else {
       phoneService
@@ -65,6 +83,10 @@ const App = () => {
         })
       setNewName('')
       setNewNumber('')
+      setSuccessMessage(`Added ${newName}.`)
+      setTimeout(() => {
+        setSuccessMessage(null)
+      }, 5000)
     }
   }
   
@@ -80,8 +102,13 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>Phonebook App</h1>
+
+      <Notification message={successMessage}/>
+     
+      <Warning message={warningMessage} />
+      
       <Filter
         searchName={searchName}
         handleSearchChange={handleSearchChange}
